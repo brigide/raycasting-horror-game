@@ -10,10 +10,14 @@ namespace kMissCluster
         public Vector2 Direction;
         public Vector2 Closest;
         public float Distance;
+        public float Angle;
+        public bool isVerticalWall;
         public Ray2D(Vector2 position, float angle)
         {
             Position = position;
             Direction = Extensions.RadToVector(angle);
+
+            Angle = angle;
         }
 
         public void LookAt(float x, float y)
@@ -54,6 +58,7 @@ namespace kMissCluster
         public void SetAngle(float angle)
         {
             Direction = Extensions.RadToVector(angle);
+            Angle = angle;
         }
 
         public void DrawLine(SpriteBatch spriteBatch, Vector2 start, Vector2 end)

@@ -7,6 +7,7 @@ namespace kMissCluster
 {
     public class Game1 : Game
     {
+        public static readonly bool isDevelopment = true;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -31,10 +32,6 @@ namespace kMissCluster
 
             base.Initialize();
 
-            _graphics.PreferredBackBufferWidth = 2 * 8 * 64;
-            _graphics.PreferredBackBufferHeight = 8 * 64;
-            _graphics.ApplyChanges();
-
             EntityManager.Add(Player.Instance);
         }
 
@@ -46,6 +43,12 @@ namespace kMissCluster
             Art.Load(Content);
 
             LoadLevel("forest");
+
+            int width = 1024;
+            if (isDevelopment) width += level.Width * Tile.Width;
+            _graphics.PreferredBackBufferWidth = width;
+            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.ApplyChanges();
         }
 
         private void LoadLevel(string levelName)
@@ -79,9 +82,14 @@ namespace kMissCluster
 
             _spriteBatch.Begin(SpriteSortMode.Texture, BlendState.Additive);
             EntityManager.Draw(_spriteBatch);
-            player.DrawRays(_spriteBatch);
-            level.Draw(gameTime, _spriteBatch);
-            player.DrawVision(_spriteBatch);
+
+            if (isDevelopment) // draw 2d map only if is in dev mode
+            {
+                player.DrawRays(_spriteBatch);
+                level.Draw(gameTime, _spriteBatch);
+            }
+
+            player.DrawVision(_spriteBatch, level);
             _spriteBatch.End();
 
             base.Draw(gameTime);

@@ -37,6 +37,7 @@ namespace kMissCluster
             {
                 Rays.Add(new Ray2D(Position, Extensions.ToRadians(a)));
                 Vision.Pixels.Add(0);
+                Vision.IsVerticalWall.Add(false);
             }
 
 
@@ -93,6 +94,7 @@ namespace kMissCluster
                                 {
                                     distance = dist1;
                                     closest = point1;
+                                    ray.isVerticalWall = false;
                                 }
                             }
                             if (point2 != Vector2.Zero)
@@ -102,6 +104,7 @@ namespace kMissCluster
                                 {
                                     distance = dist2;
                                     closest = point2;
+                                    ray.isVerticalWall = true;
                                 }
                             }
                             if (point3 != Vector2.Zero)
@@ -111,6 +114,7 @@ namespace kMissCluster
                                 {
                                     distance = dist3;
                                     closest = point3;
+                                    ray.isVerticalWall = false;
                                 }
                             }
                             if (point4 != Vector2.Zero)
@@ -120,6 +124,7 @@ namespace kMissCluster
                                 {
                                     distance = dist4;
                                     closest = point4;
+                                    ray.isVerticalWall = true;
                                 }
                             }
 
@@ -128,7 +133,11 @@ namespace kMissCluster
                                 ray.Distance = distance;
                                 ray.Closest = closest;
                             }
-                            Vision.Pixels[i] = ray.Distance;
+                            float cameraAngle = (float)Angle - ray.Angle; // fix fisheyes
+                            if (cameraAngle < 0) cameraAngle += 2 * (float)Math.PI;
+                            if (cameraAngle > 2 * (float)Math.PI) cameraAngle -= 2 * (float)Math.PI;
+                            Vision.Pixels[i] = ray.Distance * (float)Math.Cos(cameraAngle);
+                            Vision.IsVerticalWall[i] = ray.isVerticalWall;
                         }
                     }
                 }
@@ -146,9 +155,9 @@ namespace kMissCluster
             }
         }
 
-        public void DrawVision(SpriteBatch spriteBatch)
+        public void DrawVision(SpriteBatch spriteBatch, Level level)
         {
-            Vision.Draw(spriteBatch);
+            Vision.Draw(spriteBatch, level);
         }
 
         private void HandleLevelCollisions(Level level)
