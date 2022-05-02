@@ -49,6 +49,8 @@ namespace kMissCluster
             _graphics.PreferredBackBufferWidth = width;
             _graphics.PreferredBackBufferHeight = 768;
             _graphics.ApplyChanges();
+
+            Player.Instance.Position = Level.start;
         }
 
         private void LoadLevel(string levelName)

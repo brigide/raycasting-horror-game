@@ -22,7 +22,7 @@ namespace kMissCluster
             get { return tiles.GetLength(1); }
         }
 
-        private Vector2 start;
+        public static Vector2 start;
         private Point exit = InvalidPosition;
         private static readonly Point InvalidPosition = new Point(-1, -1);
 
@@ -90,6 +90,13 @@ namespace kMissCluster
                 case 'w':
                     return LoadWallTile(x, y);
 
+                // Spawn point
+                case 'S':
+                    return SetSpawnPoint(x, y);
+
+                case 's':
+                    return SetSpawnPoint(x, y);
+
                 // Unknown tile type character
                 default:
                     throw new NotSupportedException(String.Format("Unsupported tile type character '{0}' at position {1}, {2}.", tileType, x, y));
@@ -108,6 +115,13 @@ namespace kMissCluster
             exit = GetBounds(x, y).Center;
 
             return new Tile(Art.Wall, TileCollision.Passable);
+        }
+
+        private Tile SetSpawnPoint(int x, int y)
+        {
+            start = new Vector2(x * Tile.Width + Tile.Width / 2, y * Tile.Height + Tile.Height / 2);
+
+            return new Tile(null, TileCollision.Passable);
         }
 
         public Rectangle GetBounds(int x, int y)
