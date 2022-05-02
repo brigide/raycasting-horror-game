@@ -11,6 +11,8 @@ namespace kMissCluster
 
         private List<Ray2D> Rays { get; set; }
         private static Player instance;
+
+        private Scene Vision;
         public static Player Instance
         {
             get
@@ -29,16 +31,15 @@ namespace kMissCluster
             Radius = 10;
 
             Rays = new List<Ray2D>();
+            Vision = new Scene();
 
             for (int a = 0; a < 60; a++)
             {
                 Rays.Add(new Ray2D(Position, Extensions.ToRadians(a)));
+                Vision.Pixels.Add(0);
             }
 
-            // float rayAngle = (float)Angle - Extensions.ToRadians(1) * 30;
-            // if (rayAngle < 0) rayAngle += 2 * (float)Math.PI;
-            // if (rayAngle > 2 * (float)Math.PI) rayAngle -= 2 * (float)Math.PI;
-            // Rays.Add(new Ray2D(Position, rayAngle));
+
         }
 
         public override void Update(Level level)
@@ -60,8 +61,9 @@ namespace kMissCluster
             }
 
             Tile[,] tiles = level.GetTiles;
-            foreach (Ray2D ray in Rays)
+            for (int i = 0; i < Rays.Count; i++)
             {
+                Ray2D ray = Rays[i];
                 ray.Closest = Vector2.Zero;
                 ray.Distance = 100000000;
                 // Loop over every tile position,
@@ -126,7 +128,7 @@ namespace kMissCluster
                                 ray.Distance = distance;
                                 ray.Closest = closest;
                             }
-
+                            Vision.Pixels[i] = ray.Distance;
                         }
                     }
                 }
@@ -142,6 +144,11 @@ namespace kMissCluster
                 //ray.DrawLine(spriteBatch, Position, Position + ray.Direction * 15);
                 ray.DrawLine(spriteBatch, Position, ray.Closest);
             }
+        }
+
+        public void DrawVision(SpriteBatch spriteBatch)
+        {
+            Vision.Draw(spriteBatch);
         }
 
         private void HandleLevelCollisions(Level level)

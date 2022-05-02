@@ -81,6 +81,7 @@ namespace kMissCluster
             EntityManager.Draw(_spriteBatch);
             player.DrawRays(_spriteBatch);
             level.Draw(gameTime, _spriteBatch);
+            player.DrawVision(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

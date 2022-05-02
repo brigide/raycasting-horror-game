@@ -50,15 +50,15 @@ namespace kMissCluster
             {
                 player.Angle -= 0.1;
                 if (player.Angle < 0) player.Angle += 2 * Math.PI;
-                player.Delta.X = (float)Math.Cos(player.Angle) * 5;
-                player.Delta.Y = (float)Math.Sin(player.Angle) * 5;
+                player.Delta.X = (float)Math.Cos(player.Angle) * 3;
+                player.Delta.Y = (float)Math.Sin(player.Angle) * 3;
             }
             if (keyboardState.IsKeyDown(Keys.D))
             {
                 player.Angle += 0.1;
                 if (player.Angle > 2 * Math.PI) player.Angle -= 2 * Math.PI;
-                player.Delta.X = (float)Math.Cos(player.Angle) * 5;
-                player.Delta.Y = (float)Math.Sin(player.Angle) * 5;
+                player.Delta.X = (float)Math.Cos(player.Angle) * 3;
+                player.Delta.Y = (float)Math.Sin(player.Angle) * 3;
             }
             if (keyboardState.IsKeyDown(Keys.W))
             {
