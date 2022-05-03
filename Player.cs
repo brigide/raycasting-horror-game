@@ -46,7 +46,7 @@ namespace kMissCluster
         public override void Update(Level level)
         {
             // player logic goes here
-            instance = Input.GetMovementByPlayerInput(instance);
+            instance = Input.GetMovementByPlayerInput(instance, level);
 
             float rayAngle = (float)Angle - Extensions.ToRadians(1) * 30;
             if (rayAngle < 0) rayAngle += 2 * (float)Math.PI;

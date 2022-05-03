@@ -44,7 +44,7 @@ namespace kMissCluster
             return lastGamepadState.IsButtonUp(button) && gamepadState.IsButtonDown(button);
         }
 
-        public static Player GetMovementByPlayerInput(Player player)
+        public static Player GetMovementByPlayerInput(Player player, Level level)
         {
             if (keyboardState.IsKeyDown(Keys.A))
             {
@@ -60,18 +60,36 @@ namespace kMissCluster
                 player.Delta.X = (float)Math.Cos(player.Angle) * 2;
                 player.Delta.Y = (float)Math.Sin(player.Angle) * 2;
             }
+
+
+            int xOffset = 0;
+            if (player.Delta.X < 0) xOffset = -20; else xOffset = 20;
+            int yOffset = 0;
+            if (player.Delta.Y < 0) yOffset = -20; else yOffset = 20;
+            Vector2 offset = new Vector2(xOffset, yOffset);
+
+            Vector2 gridPosition = player.Position;
+            gridPosition /= Tile.Size;
+            gridPosition = new Vector2((int)gridPosition.X, (int)gridPosition.Y); //player's grid position
+            Vector2 gridAddOffset = (player.Position + offset) / Tile.Size; gridAddOffset = new Vector2((int)gridAddOffset.X, (int)gridAddOffset.Y);
+            Vector2 gridSubOffset = (player.Position - offset) / Tile.Size; gridSubOffset = new Vector2((int)gridSubOffset.X, (int)gridSubOffset.Y);
+
+
             if (keyboardState.IsKeyDown(Keys.W))
             {
-                player.Position.X += player.Delta.X;
-                player.Position.Y += player.Delta.Y;
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridPosition.Y].Collision == TileCollision.Passable)
+                    player.Position.X += player.Delta.X;
+                if (level.GetTiles[(int)gridPosition.X, (int)gridAddOffset.Y].Collision == TileCollision.Passable)
+                    player.Position.Y += player.Delta.Y;
             }
 
             if (keyboardState.IsKeyDown(Keys.S))
             {
-                player.Position.X -= player.Delta.X;
-                player.Position.Y -= player.Delta.Y;
+                if (level.GetTiles[(int)gridSubOffset.X, (int)gridPosition.Y].Collision == TileCollision.Passable)
+                    player.Position.X -= player.Delta.X;
+                if (level.GetTiles[(int)gridPosition.X, (int)gridSubOffset.Y].Collision == TileCollision.Passable)
+                    player.Position.Y -= player.Delta.Y;
             }
-
 
             return player;
         }

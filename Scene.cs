@@ -54,7 +54,7 @@ namespace kMissCluster
 
                 spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineOffset, w, (int)lineHeight), color); //walls
                 spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), Color.Blue); //floor
-                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), Color.Aquamarine);//celling
+                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), Color.TransparentBlack);//celling
             }
         }
 
