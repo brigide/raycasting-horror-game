@@ -13,6 +13,7 @@ static class Art
     public static Texture2D Pixel { get; private set; }
 
     public static Texture2D Wall { get; private set; }
+    public static Texture2D Fuck { get; private set; }
 
 
     public static void Load(ContentManager content)
@@ -27,5 +28,6 @@ static class Art
         Pixel.SetData(new[] { Color.White });
 
         Wall = content.Load<Texture2D>("Tiles/Wall");
+        Fuck = content.Load<Texture2D>("Tiles/Fuck");
     }
 }

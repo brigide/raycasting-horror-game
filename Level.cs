@@ -90,6 +90,13 @@ namespace kMissCluster
                 case 'w':
                     return LoadWallTile(x, y);
 
+                // Fuck
+                case 'F':
+                    return LoadFuckTile(x, y);
+
+                case 'f':
+                    return LoadFuckTile(x, y);
+
                 // Spawn point
                 case 'S':
                     return SetSpawnPoint(x, y);
@@ -108,6 +115,13 @@ namespace kMissCluster
             var wall = GetBounds(x, y).Center;
 
             return new Tile(Art.Wall, TileCollision.Impassable);
+        }
+
+        private Tile LoadFuckTile(int x, int y)
+        {
+            var wall = GetBounds(x, y).Center;
+
+            return new Tile(Art.Fuck, TileCollision.Impassable);
         }
 
         private Tile LoadExitTile(int x, int y)
@@ -147,7 +161,7 @@ namespace kMissCluster
                     {
                         // Draw it in screen space.
                         Vector2 position = new Vector2(x, y) * Tile.Size;
-                        spriteBatch.Draw(texture, position, Color.Green);
+                        spriteBatch.Draw(texture, position, Color.White);
                     }
                 }
             }

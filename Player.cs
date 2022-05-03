@@ -38,6 +38,7 @@ namespace kMissCluster
                 Rays.Add(new Ray2D(Position, Extensions.ToRadians(a)));
                 Vision.Pixels.Add(0);
                 Vision.IsVerticalWall.Add(false);
+                Vision.Textures.Add(null);
             }
 
 
@@ -132,6 +133,9 @@ namespace kMissCluster
                             {
                                 ray.Distance = distance;
                                 ray.Closest = closest;
+                                Color[] colors1D = new Color[Tile.Width * Tile.Height];
+                                tile.Texture.GetData(colors1D);
+                                Vision.Textures[i] = colors1D;
                             }
                             float cameraAngle = (float)Angle - ray.Angle; // fix fisheyes
                             if (cameraAngle < 0) cameraAngle += 2 * (float)Math.PI;
