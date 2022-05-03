@@ -10,13 +10,24 @@ namespace kMissCluster
         public List<float> Pixels;
         public List<bool> IsVerticalWall;
 
+        public List<float> Distances;
+
         public List<Color[]> Textures;
+
+        public static Color floor;
+        public static Color celling;
 
         public Scene()
         {
             Pixels = new List<float>();
             IsVerticalWall = new List<bool>();
             Textures = new List<Color[]>();
+            Distances = new List<float>();
+
+            floor = new Color(Normalize(120), Normalize(120), Normalize(120));
+            celling = new Color(Normalize(0), Normalize(0), Normalize(41));
+            // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
+            // celling = new Color(Normalize(0), Normalize(0), Normalize(0));
         }
 
         public List<float> Normalize()
@@ -63,6 +74,7 @@ namespace kMissCluster
                 float lineOffset = (Game1.ScreenSize.Y / 2) - lineHeight / 2;
 
                 float ty = tyOffset * tyStep;
+                float tx = (int)(Distances[i] / 1) % Tile.Width;
 
                 float a = 1;
                 float alpha = 1 - normalizedPixels[i];
@@ -73,20 +85,22 @@ namespace kMissCluster
 
                 for (int y = 0; y < lineHeight; y++)
                 {
-                    Color color = GetPixel(Textures[i], 0, (int)ty, a, alpha);
+                    Color color = GetPixel(Textures[i], (int)tx, (int)ty, a, alpha);
 
                     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineOffset + y, w, 1), color); //walls
                     ty += tyStep;
                 }
-                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), Color.Blue); //floor
-                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), Color.Transparent);//celling
+
+                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), floor); //floor
+                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), celling);//celling
             }
         }
 
         private Color GetPixel(Color[] colors, int X, int Y, float a, float alpha)
         {
-            int test = colors.Length;
             if (Y > Tile.Height - 1) Y = Tile.Height - 1;
+            if (X > Tile.Width - 1) X = Tile.Width - 1;
+            if (X < 0) X = 0;
             Color color = colors[X + Y * Tile.Width];
             float r = Normalize(color.R);
             float g = Normalize(color.G);

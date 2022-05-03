@@ -7,7 +7,7 @@ namespace kMissCluster
 {
     public class Game1 : Game
     {
-        public static readonly bool isDevelopment = true;
+        public static readonly bool isDevelopment = false;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -45,9 +45,13 @@ namespace kMissCluster
             LoadLevel("forest");
 
             int width = 1024;
+            int height = 768;
             if (isDevelopment) width += level.Width * Tile.Width;
             _graphics.PreferredBackBufferWidth = width;
-            _graphics.PreferredBackBufferHeight = 768;
+
+            if (isDevelopment) height += level.Height * Tile.Width;
+            _graphics.PreferredBackBufferHeight = height;
+
             _graphics.ApplyChanges();
 
             Player.Instance.Position = Level.start;

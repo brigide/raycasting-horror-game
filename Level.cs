@@ -98,6 +98,13 @@ namespace kMissCluster
                     return LoadFuckTile(x, y);
 
                 // Spawn point
+                case 'P':
+                    return LoadFrogTile(x, y);
+
+                case 'p':
+                    return LoadFrogTile(x, y);
+
+                // Spawn point
                 case 'S':
                     return SetSpawnPoint(x, y);
 
@@ -122,6 +129,13 @@ namespace kMissCluster
             var wall = GetBounds(x, y).Center;
 
             return new Tile(Art.Fuck, TileCollision.Impassable);
+        }
+
+        private Tile LoadFrogTile(int x, int y)
+        {
+            var wall = GetBounds(x, y).Center;
+
+            return new Tile(Art.Frog, TileCollision.Impassable);
         }
 
         private Tile LoadExitTile(int x, int y)

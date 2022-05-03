@@ -14,6 +14,7 @@ static class Art
 
     public static Texture2D Wall { get; private set; }
     public static Texture2D Fuck { get; private set; }
+    public static Texture2D Frog { get; private set; }
 
 
     public static void Load(ContentManager content)
@@ -29,5 +30,6 @@ static class Art
 
         Wall = content.Load<Texture2D>("Tiles/Wall");
         Fuck = content.Load<Texture2D>("Tiles/Fuck");
+        Frog = content.Load<Texture2D>("Tiles/Sapo");
     }
 }

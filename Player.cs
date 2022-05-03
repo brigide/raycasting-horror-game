@@ -39,6 +39,7 @@ namespace kMissCluster
                 Vision.Pixels.Add(0);
                 Vision.IsVerticalWall.Add(false);
                 Vision.Textures.Add(null);
+                Vision.Distances.Add(1000000);
             }
 
 
@@ -136,12 +137,26 @@ namespace kMissCluster
                                 Color[] colors1D = new Color[Tile.Width * Tile.Height];
                                 tile.Texture.GetData(colors1D);
                                 Vision.Textures[i] = colors1D;
+
+                                // distances to draw x value from textures
+                                if (ray.isVerticalWall)
+                                {
+                                    Vision.Distances[i] = closest.Y;
+                                }
+                                else
+                                {
+                                    Vision.Distances[i] = closest.X;
+                                }
+
+
+
                             }
                             float cameraAngle = (float)Angle - ray.Angle; // fix fisheyes
                             if (cameraAngle < 0) cameraAngle += 2 * (float)Math.PI;
                             if (cameraAngle > 2 * (float)Math.PI) cameraAngle -= 2 * (float)Math.PI;
                             Vision.Pixels[i] = ray.Distance * (float)Math.Cos(cameraAngle);
                             Vision.IsVerticalWall[i] = ray.isVerticalWall;
+
                         }
                     }
                 }
