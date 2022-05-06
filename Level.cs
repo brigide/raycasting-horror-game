@@ -85,24 +85,31 @@ namespace kMissCluster
 
                 // Wall
                 case 'W':
-                    return LoadWallTile(x, y);
+                    return LoadWallTile(x, y, Art.Wall);
 
                 case 'w':
-                    return LoadWallTile(x, y);
+                    return LoadWallTile(x, y, Art.Wall);
 
                 // Fuck
                 case 'F':
-                    return LoadFuckTile(x, y);
+                    return LoadWallTile(x, y, Art.Fuck);
 
                 case 'f':
-                    return LoadFuckTile(x, y);
+                    return LoadWallTile(x, y, Art.Fuck);
 
                 // Spawn point
                 case 'P':
-                    return LoadFrogTile(x, y);
+                    return LoadWallTile(x, y, Art.Frog);
 
                 case 'p':
-                    return LoadFrogTile(x, y);
+                    return LoadWallTile(x, y, Art.Frog);
+
+                // door
+                case 'D':
+                    return LoadDoorTile(x, y);
+
+                case 'd':
+                    return LoadDoorTile(x, y);
 
                 // Spawn point
                 case 'S':
@@ -117,25 +124,18 @@ namespace kMissCluster
             }
         }
 
-        private Tile LoadWallTile(int x, int y)
+        private Tile LoadWallTile(int x, int y, Texture2D art)
         {
-            var wall = GetBounds(x, y).Center;
+            //var wall = GetBounds(x, y).Center;
 
-            return new Tile(Art.Wall, TileCollision.Impassable);
+            return new Tile(art, TileCollision.Impassable);
         }
 
-        private Tile LoadFuckTile(int x, int y)
+        private Tile LoadDoorTile(int x, int y)
         {
             var wall = GetBounds(x, y).Center;
 
-            return new Tile(Art.Fuck, TileCollision.Impassable);
-        }
-
-        private Tile LoadFrogTile(int x, int y)
-        {
-            var wall = GetBounds(x, y).Center;
-
-            return new Tile(Art.Frog, TileCollision.Impassable);
+            return new Tile(Art.Door, TileCollision.Impassable);
         }
 
         private Tile LoadExitTile(int x, int y)

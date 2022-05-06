@@ -102,6 +102,8 @@ namespace kMissCluster
             if (X > Tile.Width - 1) X = Tile.Width - 1;
             if (X < 0) X = 0;
             Color color = colors[X + Y * Tile.Width];
+            if (color.R == 255 && color.G == 0 && color.B == 255)
+                return new Color(0, 0, 0, 0);
             float r = Normalize(color.R);
             float g = Normalize(color.G);
             float b = Normalize(color.B);

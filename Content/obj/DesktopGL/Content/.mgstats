@@ -1,2 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Levels/forest.txt","C:\Users\b_bri\Documents\fei\gamedev\kMissCluster\Content\bin\DesktopGL\Content\Levels/forest.txt","CopyItem","File",78,78,0,0021484
+"C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Levels/forest.txt","C:\Users\b_bri\Documents\fei\gamedev\kMissCluster\Content\bin\DesktopGL\Content\Levels/forest.txt","CopyItem","File",78,78,0,0019672
+"C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Door.png","C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/bin/DesktopGL/Content/Tiles/Door.xnb","TextureProcessor","Texture2DContent",6487,16469,0,1472331
+"C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fence.png","C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/bin/DesktopGL/Content/Tiles/Fence.xnb","TextureProcessor","Texture2DContent",3323,16469,0,0023609

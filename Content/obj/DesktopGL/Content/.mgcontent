@@ -12,11 +12,15 @@
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Pointer.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Seeker.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Wanderer.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Door.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fence.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fuck.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Sapo.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Wall.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
