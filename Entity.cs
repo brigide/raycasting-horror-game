@@ -25,7 +25,7 @@ namespace kMissCluster
             }
         }
 
-        public abstract void Update(Level level);
+        public abstract void Update(Level level, GameTime gameTime);
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {

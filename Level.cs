@@ -23,7 +23,7 @@ namespace kMissCluster
         }
 
         public static Vector2 start;
-        public List<Tile> OpenedDoors;
+        public Queue<OpenDoorControl> OpenedDoors;
         private Point exit = InvalidPosition;
         private static readonly Point InvalidPosition = new Point(-1, -1);
 
@@ -36,7 +36,7 @@ namespace kMissCluster
         public Level(Stream fileStream)
         {
             LoadTiles(fileStream);
-            OpenedDoors = new List<Tile>();
+            OpenedDoors = new Queue<OpenDoorControl>();
         }
 
         private void LoadTiles(Stream fileStream)

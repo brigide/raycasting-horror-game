@@ -44,7 +44,7 @@ namespace kMissCluster
             return lastGamepadState.IsButtonUp(button) && gamepadState.IsButtonDown(button);
         }
 
-        public static Player GetMovementByPlayerInput(Player player, Level level)
+        public static Player GetMovementByPlayerInput(Player player, Level level, GameTime gameTime)
         {
             if (keyboardState.IsKeyDown(Keys.A))
             {
@@ -100,6 +100,14 @@ namespace kMissCluster
                 if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.ClosedDoor)
                 {
                     level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision = TileCollision.OpenDoor;
+                    level.OpenedDoors.Enqueue(
+                        new OpenDoorControl
+                        {
+                            X = (int)gridAddOffset.X,
+                            Y = (int)gridAddOffset.Y,
+                            CloseSecond = gameTime.TotalGameTime.TotalSeconds + 3
+                        }
+                    );
                 }
 
             }

@@ -23,12 +23,12 @@ namespace kMissCluster
                 addedEntities.Add(entity);
         }
 
-        public static void Update(Level level)
+        public static void Update(Level level, GameTime gameTime)
         {
             isUpdating = true;
 
             foreach (var entity in entities)
-                entity.Update(level);
+                entity.Update(level, gameTime);
 
             isUpdating = false;
 

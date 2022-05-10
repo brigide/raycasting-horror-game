@@ -73,17 +73,15 @@ namespace kMissCluster
             // TODO: Add your update logic here  
             Input.Update();
 
-            EntityManager.Update(level);
+            EntityManager.Update(level, gameTime);
 
-            if (gameTime.ElapsedGameTime.Seconds % 5 == 0)
+            if (level.OpenedDoors.Count > 0)
             {
-                for (int i = 0; i < level.Width; i++)
+                var door = level.OpenedDoors.Peek();
+                if (door.CloseSecond < gameTime.TotalGameTime.TotalSeconds)
                 {
-                    for (int j = 0; j < level.Height; j++)
-                    {
-                        if (level.GetTiles[i, j].Collision == TileCollision.OpenDoor)
-                            level.GetTiles[i, j].Collision = TileCollision.ClosedDoor;
-                    }
+                    level.GetTiles[door.X, door.Y].Collision = TileCollision.ClosedDoor;
+                    level.OpenedDoors.Dequeue();
                 }
             }
 
