@@ -13,6 +13,7 @@ namespace kMissCluster
         public List<float> Distances;
 
         public List<Color[]> Textures;
+        public List<TileCollision> TileCollisions;
 
         public static Color floor;
         public static Color celling;
@@ -23,6 +24,7 @@ namespace kMissCluster
             IsVerticalWall = new List<bool>();
             Textures = new List<Color[]>();
             Distances = new List<float>();
+            TileCollisions = new List<TileCollision>();
 
             floor = new Color(Normalize(120), Normalize(120), Normalize(120));
             celling = new Color(Normalize(0), Normalize(0), Normalize(41));
@@ -86,6 +88,7 @@ namespace kMissCluster
                 for (int y = 0; y < lineHeight; y++)
                 {
                     Color color = GetPixel(Textures[i], (int)tx, (int)ty, a, alpha);
+
 
                     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineOffset + y, w, 1), color); //walls
                     ty += tyStep;

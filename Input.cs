@@ -77,18 +77,31 @@ namespace kMissCluster
 
             if (keyboardState.IsKeyDown(Keys.W))
             {
-                if (level.GetTiles[(int)gridAddOffset.X, (int)gridPosition.Y].Collision == TileCollision.Passable)
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridPosition.Y].Collision == TileCollision.Passable
+                    || level.GetTiles[(int)gridAddOffset.X, (int)gridPosition.Y].Collision == TileCollision.OpenDoor)
                     player.Position.X += player.Delta.X;
-                if (level.GetTiles[(int)gridPosition.X, (int)gridAddOffset.Y].Collision == TileCollision.Passable)
+                if (level.GetTiles[(int)gridPosition.X, (int)gridAddOffset.Y].Collision == TileCollision.Passable
+                    || level.GetTiles[(int)gridPosition.X, (int)gridAddOffset.Y].Collision == TileCollision.OpenDoor)
                     player.Position.Y += player.Delta.Y;
             }
 
             if (keyboardState.IsKeyDown(Keys.S))
             {
-                if (level.GetTiles[(int)gridSubOffset.X, (int)gridPosition.Y].Collision == TileCollision.Passable)
+                if (level.GetTiles[(int)gridSubOffset.X, (int)gridPosition.Y].Collision == TileCollision.Passable
+                    || level.GetTiles[(int)gridSubOffset.X, (int)gridPosition.Y].Collision == TileCollision.OpenDoor)
                     player.Position.X -= player.Delta.X;
-                if (level.GetTiles[(int)gridPosition.X, (int)gridSubOffset.Y].Collision == TileCollision.Passable)
+                if (level.GetTiles[(int)gridPosition.X, (int)gridSubOffset.Y].Collision == TileCollision.Passable
+                    || level.GetTiles[(int)gridPosition.X, (int)gridSubOffset.Y].Collision == TileCollision.OpenDoor)
                     player.Position.Y -= player.Delta.Y;
+            }
+
+            if (keyboardState.IsKeyDown(Keys.E))
+            {
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.ClosedDoor)
+                {
+                    level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision = TileCollision.OpenDoor;
+                }
+
             }
 
             return player;

@@ -40,6 +40,7 @@ namespace kMissCluster
                 Vision.IsVerticalWall.Add(false);
                 Vision.Textures.Add(null);
                 Vision.Distances.Add(1000000);
+                Vision.TileCollisions.Add(TileCollision.Passable);
             }
 
 
@@ -75,7 +76,7 @@ namespace kMissCluster
                     for (int x = 0; x < level.Width; ++x)
                     {
                         Tile tile = tiles[x, y];
-                        if (tile.Collision != TileCollision.Passable)
+                        if (tile.Collision != TileCollision.Passable && tile.Collision != TileCollision.OpenDoor)
                         {
                             Vector2 topLeft = new Vector2(x, y) * Tile.Size;
                             Vector2 topRight = new Vector2(x, y) * Tile.Size + new Vector2(Tile.Width, 0);
@@ -147,16 +148,13 @@ namespace kMissCluster
                                 {
                                     Vision.Distances[i] = closest.X;
                                 }
-
-
-
+                                Vision.TileCollisions[i] = tile.Collision;
                             }
                             float cameraAngle = (float)Angle - ray.Angle; // fix fisheyes
                             if (cameraAngle < 0) cameraAngle += 2 * (float)Math.PI;
                             if (cameraAngle > 2 * (float)Math.PI) cameraAngle -= 2 * (float)Math.PI;
                             Vision.Pixels[i] = ray.Distance * (float)Math.Cos(cameraAngle);
                             Vision.IsVerticalWall[i] = ray.isVerticalWall;
-
                         }
                     }
                 }

@@ -75,6 +75,18 @@ namespace kMissCluster
 
             EntityManager.Update(level);
 
+            if (gameTime.ElapsedGameTime.Seconds % 5 == 0)
+            {
+                for (int i = 0; i < level.Width; i++)
+                {
+                    for (int j = 0; j < level.Height; j++)
+                    {
+                        if (level.GetTiles[i, j].Collision == TileCollision.OpenDoor)
+                            level.GetTiles[i, j].Collision = TileCollision.ClosedDoor;
+                    }
+                }
+            }
+
             base.Update(gameTime);
         }
 

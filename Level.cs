@@ -23,6 +23,7 @@ namespace kMissCluster
         }
 
         public static Vector2 start;
+        public List<Tile> OpenedDoors;
         private Point exit = InvalidPosition;
         private static readonly Point InvalidPosition = new Point(-1, -1);
 
@@ -35,6 +36,7 @@ namespace kMissCluster
         public Level(Stream fileStream)
         {
             LoadTiles(fileStream);
+            OpenedDoors = new List<Tile>();
         }
 
         private void LoadTiles(Stream fileStream)
@@ -135,7 +137,7 @@ namespace kMissCluster
         {
             var wall = GetBounds(x, y).Center;
 
-            return new Tile(Art.Door, TileCollision.Impassable);
+            return new Tile(Art.Door, TileCollision.ClosedDoor);
         }
 
         private Tile LoadExitTile(int x, int y)

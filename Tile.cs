@@ -9,6 +9,8 @@ namespace kMissCluster
         Passable = 0,
         Impassable = 1,
         Platform = 2,
+        OpenDoor = 3,
+        ClosedDoor = 4,
     }
     struct Tile
     {
