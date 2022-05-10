@@ -43,8 +43,9 @@ namespace kMissCluster
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            foreach (var entity in entities)
-                entity.Draw(spriteBatch);
+            if (Game1.isDevelopment)
+                foreach (var entity in entities)
+                    entity.Draw(spriteBatch);
         }
     }
 }

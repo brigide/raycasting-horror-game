@@ -61,8 +61,9 @@ namespace kMissCluster
         {
             // Load the level.
             string levelPath = $"Content/Levels/{levelName}.txt";
+            //string levelPath = $"Content/Levels/{levelName}.txt";
             using (Stream fileStream = TitleContainer.OpenStream(levelPath))
-                level = new Level(fileStream);
+                level = new Level(fileStream, levelName);
         }
 
         protected override void Update(GameTime gameTime)

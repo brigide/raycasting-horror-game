@@ -13,6 +13,8 @@ namespace kMissCluster
     {
         private Tile[,] tiles;
 
+        public static string Name { get; private set; }
+
         public int Width
         {
             get { return tiles.GetLength(0); }
@@ -33,10 +35,11 @@ namespace kMissCluster
         }
 
 
-        public Level(Stream fileStream)
+        public Level(Stream fileStream, string name)
         {
             LoadTiles(fileStream);
             OpenedDoors = new Queue<OpenDoorControl>();
+            Name = name;
         }
 
         private void LoadTiles(Stream fileStream)

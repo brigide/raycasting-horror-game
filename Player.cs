@@ -41,6 +41,8 @@ namespace kMissCluster
                 Vision.Textures.Add(null);
                 Vision.Distances.Add(1000000);
                 Vision.TileCollisions.Add(TileCollision.Passable);
+                Vision.Rays.Add(new Ray2D(Vector2.Zero, 0));
+                Vision.Player = instance;
             }
 
 
@@ -62,6 +64,8 @@ namespace kMissCluster
                 if (rayAngle > 2 * (float)Math.PI) rayAngle -= 2 * (float)Math.PI;
 
                 Rays[i].Position = Position;
+                Rays[i].Angle = rayAngle;
+                Vision.Rays.Add(Rays[i]);
             }
 
             Tile[,] tiles = level.GetTiles;

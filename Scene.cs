@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System;
 
 namespace kMissCluster
 {
@@ -15,6 +16,10 @@ namespace kMissCluster
         public List<Color[]> Textures;
         public List<TileCollision> TileCollisions;
 
+        public List<Ray2D> Rays;
+
+        public Player Player;
+
         public static Color floor;
         public static Color celling;
 
@@ -25,9 +30,17 @@ namespace kMissCluster
             Textures = new List<Color[]>();
             Distances = new List<float>();
             TileCollisions = new List<TileCollision>();
+            Rays = new List<Ray2D>();
+            //Player = Player.Instance;
 
-            floor = new Color(Normalize(120), Normalize(120), Normalize(120));
-            celling = new Color(Normalize(0), Normalize(0), Normalize(41));
+            var a = 0.2f;
+            if (Level.Name == "forest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
+            if (Level.Name == "building") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
+            if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
+            //celling = new Color(Normalize(0), Normalize(0), Normalize(41));
+            if (Level.Name == "forest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
+            if (Level.Name == "building") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
+            if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
             // celling = new Color(Normalize(0), Normalize(0), Normalize(0));
         }
@@ -78,10 +91,10 @@ namespace kMissCluster
                 float ty = tyOffset * tyStep;
                 float tx = (int)(Distances[i] / 1) % Tile.Width;
 
-                float a = 1;
+                float a = 0.25f;
                 float alpha = 1 - normalizedPixels[i];
                 if (IsVerticalWall[i])
-                    a = (float)0.9;
+                    a = (float)0.2f;
 
                 //spriteBatch.Draw(Textures[i], new Rectangle(i * w + wOffset, (int)lineOffset, w, (int)lineHeight), color); //walls
 
@@ -94,17 +107,38 @@ namespace kMissCluster
                     ty += tyStep;
                 }
 
+                // for (int y = (int)lineOffset + (int)lineHeight; y < Game1.ScreenSize.Y; y++)
+                // {
+                //     float dy = y - (Game1.ScreenSize.Y / 2.0f);
+                //     float deg = Extensions.ToRadians(Rays[i].Angle);
+                //     float cameraAngle = (float)Player.Instance.Angle - Rays[i].Angle; // fix fisheyes
+                //     if (cameraAngle < 0) cameraAngle += 2 * (float)Math.PI;
+                //     if (cameraAngle > 2 * (float)Math.PI) cameraAngle -= 2 * (float)Math.PI;
+                //     float raFix = (float)Math.Cos((float)Extensions.ToRadians(cameraAngle));
+
+                //     tx = Player.Instance.Position.X / 2 + (float)Math.Cos(deg) * dy * Tile.Width / dy / raFix;
+                //     ty = Player.Instance.Position.Y / 2 - (float)Math.Sin(deg) * dy * Tile.Height / dy / raFix;
+
+                //     Color color = GetPixel(Textures[i], (int)tx, (int)ty, 0.7f, 0.7f, "floor");
+
+                //     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, y, w, 1), color); //floor
+                // }
+
                 spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), floor); //floor
                 spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), celling);//celling
             }
         }
 
-        private Color GetPixel(Color[] colors, int X, int Y, float a, float alpha)
+        private Color GetPixel(Color[] colors, int X, int Y, float a, float alpha, string type = "wall")
         {
             if (Y > Tile.Height - 1) Y = Tile.Height - 1;
             if (X > Tile.Width - 1) X = Tile.Width - 1;
             if (X < 0) X = 0;
-            Color color = colors[X + Y * Tile.Width];
+
+            Color color = new Color();
+            if (type == "wall") color = colors[X + Y * Tile.Width];
+            if (type == "floor") color = colors[X & Tile.Width - 1 + Y & Tile.Width - 1 * Tile.Width];
+
             if (color.R == 255 && color.G == 0 && color.B == 255)
                 return new Color(0, 0, 0, 0);
             float r = Normalize(color.R);
