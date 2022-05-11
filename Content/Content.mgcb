@@ -115,6 +115,13 @@
 #begin Levels/forest.txt
 /copy:Levels/forest.txt
 
+#begin Story.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Story.spritefont
+
 #begin Tiles/Door.png
 /importer:TextureImporter
 /processor:TextureProcessor

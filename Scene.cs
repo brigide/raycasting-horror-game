@@ -62,11 +62,11 @@ namespace kMissCluster
         {
             var a = 1f * brightness;
             if (Level.Name == "forest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
-            if (Level.Name == "building1") floor = new Color(Normalize(20) * a, Normalize(20) * a, Normalize(20) * a);
+            if (Level.Name == "building1") floor = new Color(Normalize(10) * a, Normalize(10) * a, Normalize(10) * a);
             if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             //celling = new Color(Normalize(0), Normalize(0), Normalize(41));
             if (Level.Name == "forest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
-            if (Level.Name == "building1") celling = new Color(Normalize(20) * a, Normalize(20) * a, Normalize(20) * a);
+            if (Level.Name == "building1") celling = new Color(Normalize(15) * a, Normalize(15) * a, Normalize(15) * a);
             if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
             // celling = new Color(Normalize(0), Normalize(0), Normalize(0));

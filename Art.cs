@@ -11,6 +11,7 @@ static class Art
     public static Texture2D Pointer { get; private set; }
 
     public static Texture2D Pixel { get; private set; }
+    public static SpriteFont Font { get; private set; }
 
     public static Texture2D Wall { get; private set; }
     public static Texture2D Fuck { get; private set; }
@@ -31,6 +32,7 @@ static class Art
 
         Pixel = new Texture2D(Player.GraphicsDevice, 1, 1);
         Pixel.SetData(new[] { Color.White });
+        Font = content.Load<SpriteFont>("Story");
 
         Wall = content.Load<Texture2D>("Tiles/Wall");
         Fence = content.Load<Texture2D>("Tiles/Fence");

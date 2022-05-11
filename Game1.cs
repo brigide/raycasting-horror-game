@@ -5,6 +5,13 @@ using System.IO;
 
 namespace kMissCluster
 {
+    public enum GameState
+    {
+        InitStory = 0,
+        Playing = 1,
+        Ending1 = 2,
+        Ending2 = 3
+    }
     public class Game1 : Game
     {
         public static readonly bool isDevelopment = false;
@@ -17,6 +24,8 @@ namespace kMissCluster
 
         private Level level;
 
+        public static GameState state;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -24,6 +33,9 @@ namespace kMissCluster
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             Instance = this;
+
+            state = GameState.InitStory;
+            //state = GameState.Playing;
         }
 
         protected override void Initialize()
@@ -38,6 +50,8 @@ namespace kMissCluster
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            Story.LoadStory();
 
             // TODO: use this.Content to load your game content here
             Art.Load(Content);
@@ -112,7 +126,14 @@ namespace kMissCluster
                 level.Draw(gameTime, _spriteBatch);
             }
 
-            player.DrawVision(_spriteBatch, level);
+            if (state == GameState.Playing) player.DrawVision(_spriteBatch, level);
+            if (state == GameState.InitStory)
+            {
+                if (Story.StoryLines.Count > 0)
+                    Story.DrawStoryLine(_spriteBatch, gameTime);
+
+                else state = GameState.Playing;
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);
