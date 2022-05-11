@@ -119,6 +119,27 @@ namespace kMissCluster
                 case 'p':
                     return LoadWallTile(x, y, Art.Paper);
 
+                // window
+                case 'N':
+                    return LoadWallTile(x, y, Art.Window);
+
+                case 'n':
+                    return LoadWallTile(x, y, Art.Window);
+
+                // leaves
+                case 'L':
+                    return LoadWallTile(x, y, Art.Leaves);
+
+                case 'l':
+                    return LoadWallTile(x, y, Art.Leaves);
+
+                // fai
+                case 'A':
+                    return LoadWallTile(x, y, Art.Fai);
+
+                case 'a':
+                    return LoadWallTile(x, y, Art.Fai);
+
                 // door
                 case 'D':
                     return LoadDoorTile(x, y);

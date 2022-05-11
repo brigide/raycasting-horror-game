@@ -20,6 +20,9 @@ static class Art
     public static Texture2D Door { get; private set; }
     public static Texture2D Gate { get; private set; }
     public static Texture2D Paper { get; private set; }
+    public static Texture2D Window { get; private set; }
+    public static Texture2D Fai { get; private set; }
+    public static Texture2D Leaves { get; private set; }
 
 
     public static void Load(ContentManager content)
@@ -41,5 +44,8 @@ static class Art
         Door = content.Load<Texture2D>("Tiles/Door");
         Gate = content.Load<Texture2D>("Tiles/Gate");
         Paper = content.Load<Texture2D>("Tiles/Paper");
+        Window = content.Load<Texture2D>("Tiles/Window");
+        Fai = content.Load<Texture2D>("Tiles/Fai");
+        Leaves = content.Load<Texture2D>("Tiles/Leaves");
     }
 }

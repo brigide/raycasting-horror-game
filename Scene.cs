@@ -49,6 +49,10 @@ namespace kMissCluster
         {
             return (a - 0) / (255 - 0);
         }
+        public float Normalize(float min, float max, float a)
+        {
+            return (a - min) / (max - min);
+        }
 
         public List<float> Heights()
         {
@@ -62,11 +66,11 @@ namespace kMissCluster
         {
             var a = 1f * brightness;
             if (Level.Name == "forest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
-            if (Level.Name == "building1") floor = new Color(Normalize(10) * a, Normalize(10) * a, Normalize(10) * a);
+            if (Level.Name == "building1") floor = new Color(Normalize(50) * a, Normalize(50) * a, Normalize(50) * a);
             if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             //celling = new Color(Normalize(0), Normalize(0), Normalize(41));
             if (Level.Name == "forest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
-            if (Level.Name == "building1") celling = new Color(Normalize(15) * a, Normalize(15) * a, Normalize(15) * a);
+            if (Level.Name == "building1") celling = new Color(Normalize(50) * a, Normalize(50) * a, Normalize(50) * a);
             if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
             // celling = new Color(Normalize(0), Normalize(0), Normalize(0));
@@ -128,9 +132,27 @@ namespace kMissCluster
 
                 //     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, y, w, 1), color); //floor
                 // }
+                if (Level.Name == "forest")
+                    spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), floor); //floor
+                else
+                {
+                    for (int y = (int)lineHeight + (int)lineOffset; y < Game1.ScreenSize.Y; y++)
+                    {
+                        var d = Normalize(Game1.ScreenSize.Y / 2.0f, Game1.ScreenSize.Y, y);
+                        spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, y, w, 1), floor * d);//celling
+                    }
+                }
 
-                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), floor); //floor
-                spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), celling);//celling
+                if (Level.Name == "forest")
+                    spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), celling);//celling
+                else
+                {
+                    for (int y = 0; y < (int)lineOffset; y++)
+                    {
+                        var d = 1 - Normalize(0, Game1.ScreenSize.Y / 2.0f, y);
+                        spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, y, w, 1), celling * d);//celling
+                    }
+                }
             }
         }
 
