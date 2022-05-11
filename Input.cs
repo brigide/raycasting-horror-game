@@ -110,6 +110,11 @@ namespace kMissCluster
                     );
                 }
 
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit)
+                {
+                    player.ReachedForestEnd = true;
+                }
+
             }
 
             return player;

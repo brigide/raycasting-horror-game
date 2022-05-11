@@ -26,7 +26,7 @@ namespace kMissCluster
 
         public static Vector2 start;
         public Queue<OpenDoorControl> OpenedDoors;
-        private Point exit = InvalidPosition;
+        public Point exit = InvalidPosition;
         private static readonly Point InvalidPosition = new Point(-1, -1);
 
         public Tile[,] GetTiles
@@ -87,6 +87,9 @@ namespace kMissCluster
                 // Exit
                 case 'X':
                     return LoadExitTile(x, y);
+                // Exit
+                case 'x':
+                    return LoadExitTile(x, y);
 
                 // Wall
                 case 'W':
@@ -97,17 +100,24 @@ namespace kMissCluster
 
                 // Fuck
                 case 'F':
-                    return LoadWallTile(x, y, Art.Fuck);
+                    return LoadWallTile(x, y, Art.Fence);
 
                 case 'f':
-                    return LoadWallTile(x, y, Art.Fuck);
+                    return LoadWallTile(x, y, Art.Fence);
+
+                // Gate
+                case 'G':
+                    return LoadWallTile(x, y, Art.Gate);
+
+                case 'g':
+                    return LoadWallTile(x, y, Art.Gate);
 
                 // Spawn point
                 case 'P':
-                    return LoadWallTile(x, y, Art.Frog);
+                    return LoadWallTile(x, y, Art.Paper);
 
                 case 'p':
-                    return LoadWallTile(x, y, Art.Frog);
+                    return LoadWallTile(x, y, Art.Paper);
 
                 // door
                 case 'D':
@@ -147,7 +157,7 @@ namespace kMissCluster
         {
             exit = GetBounds(x, y).Center;
 
-            return new Tile(Art.Wall, TileCollision.Passable);
+            return new Tile(Art.Door, TileCollision.Exit);
         }
 
         private Tile SetSpawnPoint(int x, int y)

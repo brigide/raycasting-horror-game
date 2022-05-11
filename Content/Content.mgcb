@@ -109,6 +109,9 @@
 /processorParam:TextureFormat=Color
 /build:Art/Wanderer.png
 
+#begin Levels/building1.txt
+/copy:Levels/building1.txt
+
 #begin Levels/forest.txt
 /copy:Levels/forest.txt
 
@@ -147,6 +150,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Tiles/Fuck.png
+
+#begin Tiles/Gate.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/Gate.png
+
+#begin Tiles/Paper.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/Paper.png
 
 #begin Tiles/Sapo.png
 /importer:TextureImporter

@@ -13,6 +13,7 @@ namespace kMissCluster
         private static Player instance;
 
         private Scene Vision;
+        public bool ReachedForestEnd;
         public static Player Instance
         {
             get
@@ -45,6 +46,7 @@ namespace kMissCluster
                 Vision.Player = instance;
             }
 
+            ReachedForestEnd = false;
 
         }
 

@@ -7,7 +7,7 @@ namespace kMissCluster
 {
     public class Game1 : Game
     {
-        public static readonly bool isDevelopment = true;
+        public static readonly bool isDevelopment = false;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -84,6 +84,12 @@ namespace kMissCluster
                     level.GetTiles[door.X, door.Y].Collision = TileCollision.ClosedDoor;
                     level.OpenedDoors.Dequeue();
                 }
+            }
+
+            if (Player.Instance.ReachedForestEnd && Level.Name == "forest")
+            {
+                LoadLevel("building1");
+                Player.Instance.Position = Level.start;
             }
 
             base.Update(gameTime);

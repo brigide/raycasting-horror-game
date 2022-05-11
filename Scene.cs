@@ -23,6 +23,8 @@ namespace kMissCluster
         public static Color floor;
         public static Color celling;
 
+        public static readonly float brightness = 0.5f;
+
         public Scene()
         {
             Pixels = new List<float>();
@@ -32,17 +34,6 @@ namespace kMissCluster
             TileCollisions = new List<TileCollision>();
             Rays = new List<Ray2D>();
             //Player = Player.Instance;
-
-            var a = 0.2f;
-            if (Level.Name == "forest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
-            if (Level.Name == "building") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
-            if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
-            //celling = new Color(Normalize(0), Normalize(0), Normalize(41));
-            if (Level.Name == "forest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
-            if (Level.Name == "building") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
-            if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
-            // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
-            // celling = new Color(Normalize(0), Normalize(0), Normalize(0));
         }
 
         public List<float> Normalize()
@@ -69,6 +60,21 @@ namespace kMissCluster
         }
         public void Draw(SpriteBatch spriteBatch, Level level)
         {
+            var a = 1f * brightness;
+            if (Level.Name == "forest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
+            if (Level.Name == "building1") floor = new Color(Normalize(20) * a, Normalize(20) * a, Normalize(20) * a);
+            if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
+            //celling = new Color(Normalize(0), Normalize(0), Normalize(41));
+            if (Level.Name == "forest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
+            if (Level.Name == "building1") celling = new Color(Normalize(20) * a, Normalize(20) * a, Normalize(20) * a);
+            if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
+            // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
+            // celling = new Color(Normalize(0), Normalize(0), Normalize(0));
+
+
+
+
+
             int wOffset = Game1.isDevelopment ? level.Width * Tile.Width : 0; // w offset will be applied only when developing
             int w = ((int)Game1.ScreenSize.X - wOffset) / Pixels.Count;
 
@@ -91,10 +97,9 @@ namespace kMissCluster
                 float ty = tyOffset * tyStep;
                 float tx = (int)(Distances[i] / 1) % Tile.Width;
 
-                float a = 0.25f;
                 float alpha = 1 - normalizedPixels[i];
                 if (IsVerticalWall[i])
-                    a = (float)0.2f;
+                    a = (float)0.9f * brightness;
 
                 //spriteBatch.Draw(Textures[i], new Rectangle(i * w + wOffset, (int)lineOffset, w, (int)lineHeight), color); //walls
 
@@ -139,8 +144,8 @@ namespace kMissCluster
             if (type == "wall") color = colors[X + Y * Tile.Width];
             if (type == "floor") color = colors[X & Tile.Width - 1 + Y & Tile.Width - 1 * Tile.Width];
 
-            if (color.R == 255 && color.G == 0 && color.B == 255)
-                return new Color(0, 0, 0, 0);
+            //if (color.R == 255 && color.G == 0 && color.B == 255)
+            //return new Color(0, 0, 0, 0);
             float r = Normalize(color.R);
             float g = Normalize(color.G);
             float b = Normalize(color.B);

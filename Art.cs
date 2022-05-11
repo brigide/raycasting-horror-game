@@ -17,6 +17,8 @@ static class Art
     public static Texture2D Frog { get; private set; }
     public static Texture2D Fence { get; private set; }
     public static Texture2D Door { get; private set; }
+    public static Texture2D Gate { get; private set; }
+    public static Texture2D Paper { get; private set; }
 
 
     public static void Load(ContentManager content)
@@ -31,9 +33,11 @@ static class Art
         Pixel.SetData(new[] { Color.White });
 
         Wall = content.Load<Texture2D>("Tiles/Wall");
-        Fuck = content.Load<Texture2D>("Tiles/Fuck");
+        Fence = content.Load<Texture2D>("Tiles/Fence");
         Frog = content.Load<Texture2D>("Tiles/Sapo");
         Fence = content.Load<Texture2D>("Tiles/Fence");
         Door = content.Load<Texture2D>("Tiles/Door");
+        Gate = content.Load<Texture2D>("Tiles/Gate");
+        Paper = content.Load<Texture2D>("Tiles/Paper");
     }
 }
