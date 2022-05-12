@@ -13,9 +13,12 @@ namespace kMissCluster
     public static class Story
     {
         public static Line currentDraw;
+        public static Line currentPaper;
+        public static Line currentLocked;
         public static Queue<Line> StoryLines;
-        public static Queue<string> PlayingStory;
-        public static Queue<string> Papers;
+        public static Queue<Line> PlayingStory;
+        public static Queue<Line> BuildingStory;
+        public static Queue<Line> Papers;
         public static Queue<string> Ending1;
         public static Queue<string> Ending2;
 
@@ -23,18 +26,22 @@ namespace kMissCluster
         public static void LoadStory()
         {
             StoryLines = new Queue<Line>();
-            PlayingStory = new Queue<string>();
-            Papers = new Queue<string>();
+            PlayingStory = new Queue<Line>();
+            BuildingStory = new Queue<Line>();
+            Papers = new Queue<Line>();
             Ending1 = new Queue<string>();
             Ending2 = new Queue<string>();
 
             LoadStoryLines();
             LoadPlayingLines();
+            LoadBuildingLines();
             LoadPapers();
             LoadEnding1();
             LoadEnding2();
 
             currentDraw = StoryLines.Peek();
+            currentPaper = Papers.Peek();
+            currentLocked = new Line { StoryLine = "", FirstAppear = 0.0f };
         }
 
         private static void LoadStoryLines()
@@ -50,21 +57,27 @@ namespace kMissCluster
 
         private static void LoadPlayingLines()
         {
-            PlayingStory.Enqueue("Eu sou o Private Investigator Saboia, fui contratado pela família de uma das vítimas para descobrir o que realmente aconteceu aqui.");
-            PlayingStory.Enqueue("Decido ir até a universidade onde a suposta tentativa de censura ocorreu. São 3:00AM, está tudo escuro e não há ningúem aqui. Preciso ser discreto.");
-            PlayingStory.Enqueue("Eu preciso encontrar esses trabalhos para entender o que está havendo aqui.");
+            PlayingStory.Enqueue(new Line { StoryLine = "", FirstAppear = 0.0f });
+            PlayingStory.Enqueue(new Line { StoryLine = "Eu sou o Private Investigator Saboia, fui contratado pela familia de uma\ndas vitimas para descobrir o que realmente aconteceu aqui.", FirstAppear = 0.0f });
+            PlayingStory.Enqueue(new Line { StoryLine = "Decido ir ate a universidade onde a suposta tentativa de censura ocorreu.\nSao 3:00AM, esta tudo escuro e nao ha ninguem aqui. Preciso ser discreto.", FirstAppear = 0.0f });
+            PlayingStory.Enqueue(new Line { StoryLine = "Eu preciso encontrar esses trabalhos para entender o que esta havendo aqui.", FirstAppear = 0.0f });
         }
 
+        private static void LoadBuildingLines()
+        {
+            BuildingStory.Enqueue(new Line { StoryLine = "", FirstAppear = 0.0f });
+            BuildingStory.Enqueue(new Line { StoryLine = "Escuto a porta se trancando atras de mim, acho que estou preso.", FirstAppear = 0.0f });
+        }
         private static void LoadPapers()
         {
-            Papers.Enqueue("1/8. A Inteligência Artificial vem se tornando uma das tecnologias mais importantes desenvolvidas na década.");
-            Papers.Enqueue("2/8. A empresa IBBM já fez grandes avanços na área, os engenheiros da FAI tiveram acesso com exclusividade à sua nova criação: IBBM-PS, um Supercomputador que será determinante para a nova era da computação.");
-            Papers.Enqueue("3/8. Apesar dos benefícios, existem estudos identificando padrões de comportamento agressivos e 'anti-humanos'. Nada preocupante devido às limitações de hardware descritas por Tintini (1958). Porém, é algo para se atentar a longo prazo.");
-            Papers.Enqueue("4/8. Nos últimos meses, IBBM-PS tem mostrado resultados impressionantes a respeito de reconhecimento facil e processamento de linguagem natural.");
-            Papers.Enqueue("5/8. Vem aumentado a preocupação com uma possível rebelião dos robos por parte da população, totalmente falaciosa pelos motivos descritos por Tom-Daniel (1959).");
-            Papers.Enqueue("6/8. Em novos testes, IBBM-PS mostrou comportamentos estranhos, parece que não respondia aos nossos comandos. Certamente estava ligado e funcional.");
-            Papers.Enqueue("7/8. IBBM-PS está completamente fora de si! Devemos suspender essas pesquisas agora! Kleber foi atacado, ninguém vem nos ajudar. Nos prenderam aqui, parece que sabiam o que iria acontecer.");
-            Papers.Enqueue("8/8. IBBM-PS é a técnologia mais inovadora e relevante da última década em seu segmento. IBBM tem planos para distribuição em massa como computadores pessoais.");
+            Papers.Enqueue(new Line { StoryLine = "1/8. A Inteligencia Artificial vem se tornando uma das tecnologias mais importantes\ndesenvolvidas na decada.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "2/8. A empresa IBBM ja fez grandes avancos na area, os engenheiros da FAI tiveram\nacesso com exclusividade a sua nova criacao IBBM PS, um Supercomputador que sera\ndeterminante para a nova era da computacao.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "3/8. Apesar dos beneficios, existem estudos identificando padroes de comportamento\nagressivos e 'anti-humanos'. Nada preocupante devido as limitacoes de hardware\ndescritas por Tintini (1958). Porem, e algo para se atentar a longo prazo.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "4/8. Nos ultimos meses, IBBM-PS tem mostrado resultados impressionantes a respeito\nde reconhecimento facil e processamento de linguagem natural.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "5/8. Vem aumentado a preocupacao com uma possivel rebeliao dos robos por parte da\ncomunidade cientifica, totalmente falaciosa pelos motivos descritos por Tom-Daniel (1959).", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "6/8. Em novos testes, IBBM-PS mostrou comportamentos estranhos, parece que nao\nrespondia aos nossos comandos. Certamente estava ligado e funcional.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "7/8. IBBM-PS esta completamente fora de si! Devemos suspender essas pesquisas agora!\nKleber foi atacado, ninguem vem nos ajudar. Nos prenderam aqui, parece que\nsabiam o que iria acontecer.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "8/8. IBBM-PS e a tecnologia mais inovadora e relevante da ultima decada em seu segmento.\nIBBM tem planos para distribuicao em massa como computadores pessoais.", FirstAppear = 0.0f });
         }
 
         private static void LoadEnding1()
@@ -85,10 +98,84 @@ namespace kMissCluster
             }
             spriteBatch.DrawString(Art.Font, currentDraw.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
 
-            if (currentDraw.FirstAppear + 5.0f <= gameTime.TotalGameTime.TotalSeconds)
+            if (currentDraw.FirstAppear + 0.1f <= gameTime.TotalGameTime.TotalSeconds)
             {
                 StoryLines.Dequeue();
                 if (StoryLines.Count > 0) currentDraw = StoryLines.Peek();
+            }
+        }
+
+        public static void DrawPlayingLines(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentDraw.FirstAppear == 0.0f)
+            {
+                currentDraw.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, currentDraw.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentDraw.FirstAppear + 4.5f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                PlayingStory.Dequeue();
+                if (PlayingStory.Count > 0)
+                {
+                    currentDraw = PlayingStory.Peek();
+                }
+                else currentDraw = BuildingStory.Peek();
+            }
+        }
+
+        public static void DrawBuildingLines(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentDraw.FirstAppear == 0.0f)
+            {
+                currentDraw.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, currentDraw.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentDraw.FirstAppear + 2.5f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                BuildingStory.Dequeue();
+                if (BuildingStory.Count > 0)
+                {
+                    currentDraw = BuildingStory.Peek();
+                }
+
+            }
+        }
+
+        public static void DrawPaperLines(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentPaper.FirstAppear == 0.0f)
+            {
+                currentPaper.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, currentPaper.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentPaper.FirstAppear + 5f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                Papers.Dequeue();
+                if (Papers.Count > 0)
+                {
+                    currentPaper = Papers.Peek();
+                    if (Level.Name == "building1") Level.PapersRead1++;
+                    if (Level.Name == "building2") Level.PapersRead2++;
+                }
+
+            }
+        }
+
+        public static void DrawLockedLine(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentLocked.FirstAppear == 0.0f)
+            {
+                currentLocked.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, "Eu preciso encontrar 4 artigos para destrancar.", new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentLocked.FirstAppear + 5f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                currentLocked = new Line { StoryLine = "", FirstAppear = 0.0f };
+                Level.OpenedLockedDoor = false;
             }
         }
     }

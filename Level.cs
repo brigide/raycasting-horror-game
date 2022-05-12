@@ -34,12 +34,20 @@ namespace kMissCluster
             get { return tiles; }
         }
 
+        public static int PapersRead1 { get; set; }
+        public static int PapersRead2 { get; set; }
+        public static bool OpenedLockedDoor { get; set; }
+
 
         public Level(Stream fileStream, string name)
         {
             LoadTiles(fileStream);
             OpenedDoors = new Queue<OpenDoorControl>();
             Name = name;
+
+            PapersRead1 = 0;
+            PapersRead2 = 0;
+            OpenedLockedDoor = false;
         }
 
         private void LoadTiles(Stream fileStream)
@@ -91,6 +99,20 @@ namespace kMissCluster
                 case 'x':
                     return LoadExitTile(x, y);
 
+                // Exit
+                case 'Y':
+                    return LoadGateExitTile(x, y);
+                // Exit
+                case 'y':
+                    return LoadGateExitTile(x, y);
+
+                // Exit
+                case 'Z':
+                    return LoadSecondExitTile(x, y);
+                // Exit
+                case 'z':
+                    return LoadSecondExitTile(x, y);
+
                 // Wall
                 case 'W':
                     return LoadWallTile(x, y, Art.Wall);
@@ -133,12 +155,33 @@ namespace kMissCluster
                 case 'l':
                     return LoadWallTile(x, y, Art.Leaves);
 
+                // static door
+                case 'B':
+                    return LoadWallTile(x, y, Art.Door);
+
+                case 'b':
+                    return LoadWallTile(x, y, Art.Door);
+
                 // fai
                 case 'A':
                     return LoadWallTile(x, y, Art.Fai);
 
                 case 'a':
                     return LoadWallTile(x, y, Art.Fai);
+
+                // exitsign
+                case 'E':
+                    return LoadWallTile(x, y, Art.ExitSign);
+
+                case 'e':
+                    return LoadWallTile(x, y, Art.ExitSign);
+
+                // basement
+                case 'U':
+                    return LoadWallTile(x, y, Art.BaseSign);
+
+                case 'u':
+                    return LoadWallTile(x, y, Art.BaseSign);
 
                 // door
                 case 'D':
@@ -179,6 +222,20 @@ namespace kMissCluster
             exit = GetBounds(x, y).Center;
 
             return new Tile(Art.Door, TileCollision.Exit);
+        }
+
+        private Tile LoadSecondExitTile(int x, int y)
+        {
+            exit = GetBounds(x, y).Center;
+
+            return new Tile(Art.Door, TileCollision.Exit2);
+        }
+
+        private Tile LoadGateExitTile(int x, int y)
+        {
+            exit = GetBounds(x, y).Center;
+
+            return new Tile(Art.Gate, TileCollision.Exit);
         }
 
         private Tile SetSpawnPoint(int x, int y)

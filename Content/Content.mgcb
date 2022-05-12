@@ -109,8 +109,20 @@
 /processorParam:TextureFormat=Color
 /build:Art/Wanderer.png
 
+#begin Levels/backforest.txt
+/copy:Levels/backforest.txt
+
 #begin Levels/building1.txt
 /copy:Levels/building1.txt
+
+#begin Levels/building2.txt
+/copy:Levels/building2.txt
+
+#begin Levels/choice.txt
+/copy:Levels/choice.txt
+
+#begin Levels/deadend.txt
+/copy:Levels/deadend.txt
 
 #begin Levels/forest.txt
 /copy:Levels/forest.txt
@@ -121,6 +133,18 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Story.spritefont
+
+#begin Tiles/Basement.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/Basement.png
 
 #begin Tiles/Door.png
 /importer:TextureImporter
@@ -133,6 +157,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Tiles/Door.png
+
+#begin Tiles/Exit.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tiles/Exit.png
 
 #begin Tiles/Fai.png
 /importer:TextureImporter

@@ -110,9 +110,51 @@ namespace kMissCluster
                     );
                 }
 
-                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit)
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit
+                    && Level.Name == "forest")
                 {
                     player.ReachedForestEnd = true;
+                }
+
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit
+                    && Level.Name == "building1")
+                {
+                    if (Level.PapersRead1 >= 4)
+                    {
+                        player.ReachedBuilding1End = true;
+                        player.Building1PaperCount = 0;
+                    }
+                    else
+                    {
+                        Level.OpenedLockedDoor = true;
+                    }
+                }
+
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit
+                    && Level.Name == "building2")
+                {
+                    if (Level.PapersRead2 >= 4)
+                    {
+                        player.ReachedBuilding2End = true;
+                        player.Building2PaperCount = 0;
+                    }
+                    else
+                    {
+                        Level.OpenedLockedDoor = true;
+                    }
+                }
+
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Texture == Art.Paper
+                    && Level.Name == "building1")
+                {
+                    level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Texture = Art.Wall;
+                    player.Building1PaperCount++;
+                }
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Texture == Art.Paper
+                    && Level.Name == "building2")
+                {
+                    level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Texture = Art.Wall;
+                    player.Building2PaperCount++;
                 }
 
             }

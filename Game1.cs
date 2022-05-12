@@ -106,6 +106,18 @@ namespace kMissCluster
                 Player.Instance.Position = Level.start;
             }
 
+            if (Player.Instance.ReachedBuilding1End && Level.Name == "building1")
+            {
+                LoadLevel("building2");
+                Player.Instance.Position = Level.start;
+            }
+
+            if (Player.Instance.ReachedBuilding2End && Level.Name == "building2")
+            {
+                LoadLevel("choice");
+                Player.Instance.Position = Level.start;
+            }
+
             base.Update(gameTime);
         }
 
@@ -126,14 +138,42 @@ namespace kMissCluster
                 level.Draw(gameTime, _spriteBatch);
             }
 
-            if (state == GameState.Playing) player.DrawVision(_spriteBatch, level);
+            if (state == GameState.Playing)
+            {
+                player.DrawVision(_spriteBatch, level);
+                if (Story.PlayingStory.Count > 0 && Level.Name == "forest")
+                    Story.DrawPlayingLines(_spriteBatch, gameTime);
+                else if (Story.BuildingStory.Count > 0 && Level.Name == "building1")
+                    Story.DrawBuildingLines(_spriteBatch, gameTime);
+            }
             if (state == GameState.InitStory)
             {
                 if (Story.StoryLines.Count > 0)
                     Story.DrawStoryLine(_spriteBatch, gameTime);
 
-                else state = GameState.Playing;
+                else
+                {
+                    state = GameState.Playing;
+                    Story.currentDraw = Story.PlayingStory.Peek();
+                }
             }
+
+
+            if (Player.Instance.Building1PaperCount > Level.PapersRead1)
+            {
+                Story.DrawPaperLines(_spriteBatch, gameTime);
+            }
+
+            if (Player.Instance.Building2PaperCount > Level.PapersRead2 && Level.Name == "building2")
+            {
+                Story.DrawPaperLines(_spriteBatch, gameTime);
+            }
+
+            if (Level.OpenedLockedDoor)
+            {
+                Story.DrawLockedLine(_spriteBatch, gameTime);
+            }
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

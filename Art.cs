@@ -23,6 +23,8 @@ static class Art
     public static Texture2D Window { get; private set; }
     public static Texture2D Fai { get; private set; }
     public static Texture2D Leaves { get; private set; }
+    public static Texture2D ExitSign { get; private set; }
+    public static Texture2D BaseSign { get; private set; }
 
 
     public static void Load(ContentManager content)
@@ -47,5 +49,7 @@ static class Art
         Window = content.Load<Texture2D>("Tiles/Window");
         Fai = content.Load<Texture2D>("Tiles/Fai");
         Leaves = content.Load<Texture2D>("Tiles/Leaves");
+        ExitSign = content.Load<Texture2D>("Tiles/Exit");
+        BaseSign = content.Load<Texture2D>("Tiles/Basement");
     }
 }

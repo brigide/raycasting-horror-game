@@ -12,6 +12,7 @@ namespace kMissCluster
         OpenDoor = 3,
         ClosedDoor = 4,
         Exit = 5,
+        Exit2 = 6
     }
     struct Tile
     {

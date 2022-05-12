@@ -13,7 +13,9 @@
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Seeker.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Wanderer.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Story.spritefont</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Basement.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Door.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Exit.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fai.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fence.png</File>
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fuck.png</File>
@@ -25,6 +27,8 @@
     <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Window.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
