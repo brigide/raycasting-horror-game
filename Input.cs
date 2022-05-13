@@ -144,6 +144,12 @@ namespace kMissCluster
                     }
                 }
 
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit
+                    && Level.Name == "choice")
+                {
+                    player.PickedTrueEnd = true;
+                }
+
                 if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit2
                     && Level.Name == "choice")
                 {

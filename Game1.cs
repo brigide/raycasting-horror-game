@@ -118,6 +118,12 @@ namespace kMissCluster
                 Player.Instance.Position = Level.start;
             }
 
+            if (Player.Instance.PickedTrueEnd && Level.Name == "choice")
+            {
+                LoadLevel("deadend");
+                Player.Instance.Position = Level.start;
+            }
+
             if (Player.Instance.PickedAltEnd && Level.Name == "choice")
             {
                 LoadLevel("backforest");

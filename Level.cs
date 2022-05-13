@@ -183,6 +183,27 @@ namespace kMissCluster
                 case 'u':
                     return LoadWallTile(x, y, Art.BaseSign);
 
+                // Darkwall
+                case 'V':
+                    return LoadWallTile(x, y, Art.DarkWall);
+
+                case 'v':
+                    return LoadWallTile(x, y, Art.DarkWall);
+
+                // bone
+                case 'O':
+                    return LoadWallTile(x, y, Art.BoneWall);
+
+                case 'o':
+                    return LoadWallTile(x, y, Art.BoneWall);
+
+                // 1
+                case '1':
+                    return LoadWallTile(x, y, Art.Message1);
+
+                case '2':
+                    return LoadWallTile(x, y, Art.Message2);
+
                 // door
                 case 'D':
                     return LoadDoorTile(x, y);
