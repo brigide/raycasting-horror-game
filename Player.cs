@@ -18,6 +18,8 @@ namespace kMissCluster
         public bool ReachedForestEnd;
         public bool ReachedBuilding1End { get; set; }
         public bool ReachedBuilding2End { get; set; }
+        public bool PickedTrueEnd { get; set; }
+        public bool PickedAltEnd { get; set; }
         public static Player Instance
         {
             get
@@ -53,6 +55,7 @@ namespace kMissCluster
             ReachedForestEnd = false;
             ReachedBuilding1End = false;
             ReachedBuilding2End = false;
+            PickedAltEnd = false;
 
             Building1PaperCount = 0;
             Building2PaperCount = 0;

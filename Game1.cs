@@ -118,6 +118,12 @@ namespace kMissCluster
                 Player.Instance.Position = Level.start;
             }
 
+            if (Player.Instance.PickedAltEnd && Level.Name == "choice")
+            {
+                LoadLevel("backforest");
+                Player.Instance.Position = Level.start;
+            }
+
             base.Update(gameTime);
         }
 
@@ -145,6 +151,8 @@ namespace kMissCluster
                     Story.DrawPlayingLines(_spriteBatch, gameTime);
                 else if (Story.BuildingStory.Count > 0 && Level.Name == "building1")
                     Story.DrawBuildingLines(_spriteBatch, gameTime);
+                else if (Story.ChoiceLines.Count > 0 && Level.Name == "choice")
+                    Story.DrawChoiceLine(_spriteBatch, gameTime);
             }
             if (state == GameState.InitStory)
             {
@@ -164,7 +172,7 @@ namespace kMissCluster
                 Story.DrawPaperLines(_spriteBatch, gameTime);
             }
 
-            if (Player.Instance.Building2PaperCount > Level.PapersRead2 && Level.Name == "building2")
+            if (Player.Instance.Building2PaperCount > Level.PapersRead2)
             {
                 Story.DrawPaperLines(_spriteBatch, gameTime);
             }

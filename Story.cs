@@ -19,8 +19,9 @@ namespace kMissCluster
         public static Queue<Line> PlayingStory;
         public static Queue<Line> BuildingStory;
         public static Queue<Line> Papers;
-        public static Queue<string> Ending1;
-        public static Queue<string> Ending2;
+        public static Queue<Line> ChoiceLines;
+        public static Queue<Line> Ending1;
+        public static Queue<Line> Ending2;
 
 
         public static void LoadStory()
@@ -28,14 +29,16 @@ namespace kMissCluster
             StoryLines = new Queue<Line>();
             PlayingStory = new Queue<Line>();
             BuildingStory = new Queue<Line>();
+            ChoiceLines = new Queue<Line>();
             Papers = new Queue<Line>();
-            Ending1 = new Queue<string>();
-            Ending2 = new Queue<string>();
+            Ending1 = new Queue<Line>();
+            Ending2 = new Queue<Line>();
 
             LoadStoryLines();
             LoadPlayingLines();
             LoadBuildingLines();
             LoadPapers();
+            LoadChoiceLines();
             LoadEnding1();
             LoadEnding2();
 
@@ -78,16 +81,25 @@ namespace kMissCluster
             Papers.Enqueue(new Line { StoryLine = "6/8. Em novos testes, IBBM-PS mostrou comportamentos estranhos, parece que nao\nrespondia aos nossos comandos. Certamente estava ligado e funcional.", FirstAppear = 0.0f });
             Papers.Enqueue(new Line { StoryLine = "7/8. IBBM-PS esta completamente fora de si! Devemos suspender essas pesquisas agora!\nKleber foi atacado, ninguem vem nos ajudar. Nos prenderam aqui, parece que\nsabiam o que iria acontecer.", FirstAppear = 0.0f });
             Papers.Enqueue(new Line { StoryLine = "8/8. IBBM-PS e a tecnologia mais inovadora e relevante da ultima decada em seu segmento.\nIBBM tem planos para distribuicao em massa como computadores pessoais.", FirstAppear = 0.0f });
+            Papers.Enqueue(new Line { StoryLine = "", FirstAppear = 0.0f });
+        }
+
+        private static void LoadChoiceLines()
+        {
+            ChoiceLines.Enqueue(new Line { StoryLine = "Juntei todos os trabalhos, eu me meti onde nao deveria. Quero sair daqui,\nmas meu dever diz que devo encontrar essas criancas. O que devo fazer?\nMe arriscar mais e procurar as vitimas? Ir embora e divulgar o que encontrei?", FirstAppear = 0.0f });
         }
 
         private static void LoadEnding1()
         {
-            Ending1.Enqueue("Eles estão aqui.");
+            Ending1.Enqueue(new Line { StoryLine = "Eles estão aqui.", FirstAppear = 0.0f });
         }
 
         private static void LoadEnding2()
         {
-            Ending2.Enqueue("Ninguém saberá o real destino desses meninos.");
+            Ending2.Enqueue(new Line { StoryLine = "", FirstAppear = 0.0f });
+            Ending2.Enqueue(new Line { StoryLine = "Ninguem sabera o real destino desses meninos. Desisti da minha busca apos\nvivenciar os acontecimentos.", FirstAppear = 0.0f });
+            Ending2.Enqueue(new Line { StoryLine = "Levei os artigos as autoridades com o objetivo de reabrir o caso.\nNao fui escutado.", FirstAppear = 0.0f });
+            Ending2.Enqueue(new Line { StoryLine = "Se passaram mais de 5 anos do caso, as vitimas certamente estao mortas\na esse ponto. Tudo que ganhei foi o repudio da familia da\nvitima e um titulo de louco.", FirstAppear = 0.0f });
         }
 
         public static void DrawStoryLine(SpriteBatch spriteBatch, GameTime gameTime)
@@ -139,7 +151,7 @@ namespace kMissCluster
                 {
                     currentDraw = BuildingStory.Peek();
                 }
-
+                else currentDraw = ChoiceLines.Peek();
             }
         }
 
@@ -176,6 +188,25 @@ namespace kMissCluster
             {
                 currentLocked = new Line { StoryLine = "", FirstAppear = 0.0f };
                 Level.OpenedLockedDoor = false;
+            }
+        }
+
+        public static void DrawChoiceLine(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentDraw.FirstAppear == 0.0f)
+            {
+                currentDraw.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, currentDraw.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentDraw.FirstAppear + 10f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                ChoiceLines.Dequeue();
+                if (ChoiceLines.Count > 0)
+                {
+                    currentDraw = ChoiceLines.Peek();
+                }
+
             }
         }
     }
