@@ -150,6 +150,12 @@ namespace kMissCluster
                     player.PickedAltEnd = true;
                 }
 
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit
+                    && Level.Name == "backforest")
+                {
+                    player.ReachedBackForestEnd = true;
+                }
+
                 if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Texture == Art.Paper
                     && Level.Name == "building1")
                 {

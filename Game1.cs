@@ -123,6 +123,10 @@ namespace kMissCluster
                 LoadLevel("backforest");
                 Player.Instance.Position = Level.start;
             }
+            if (Player.Instance.ReachedBackForestEnd && Level.Name == "backforest")
+            {
+                state = GameState.Ending2;
+            }
 
             base.Update(gameTime);
         }
@@ -153,6 +157,8 @@ namespace kMissCluster
                     Story.DrawBuildingLines(_spriteBatch, gameTime);
                 else if (Story.ChoiceLines.Count > 0 && Level.Name == "choice")
                     Story.DrawChoiceLine(_spriteBatch, gameTime);
+                else if (Story.Ending2.Count > 0 && Level.Name == "backforest")
+                    Story.DrawEnding2Lines(_spriteBatch, gameTime);
             }
             if (state == GameState.InitStory)
             {
@@ -164,6 +170,10 @@ namespace kMissCluster
                     state = GameState.Playing;
                     Story.currentDraw = Story.PlayingStory.Peek();
                 }
+            }
+            if (state == GameState.Ending2)
+            {
+                Story.DrawEnd(_spriteBatch);
             }
 
 

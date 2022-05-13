@@ -65,11 +65,11 @@ namespace kMissCluster
         public void Draw(SpriteBatch spriteBatch, Level level)
         {
             var a = 1f * brightness;
-            if (Level.Name == "forest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
+            if (Level.Name == "forest" || Level.Name == "backforest") floor = new Color(Normalize(0) * a, Normalize(50) * a, Normalize(0) * a);
             if (Level.Name == "building1") floor = new Color(Normalize(50) * a, Normalize(50) * a, Normalize(50) * a);
             if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             //celling = new Color(Normalize(0), Normalize(0), Normalize(41));
-            if (Level.Name == "forest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
+            if (Level.Name == "forest" || Level.Name == "backforest") celling = new Color(Normalize(0) * a, Normalize(0) * a, Normalize(50) * a);
             if (Level.Name == "building1") celling = new Color(Normalize(50) * a, Normalize(50) * a, Normalize(50) * a);
             if (Level.Name == "final") floor = new Color(Normalize(120) * a, Normalize(120) * a, Normalize(120) * a);
             // floor = new Color(Normalize(0), Normalize(0), Normalize(0));
@@ -132,7 +132,7 @@ namespace kMissCluster
 
                 //     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, y, w, 1), color); //floor
                 // }
-                if (Level.Name == "forest")
+                if (Level.Name == "forest" || Level.Name == "backforest")
                     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, (int)lineHeight + (int)lineOffset, w, (int)lineOffset), floor); //floor
                 else
                 {
@@ -143,7 +143,7 @@ namespace kMissCluster
                     }
                 }
 
-                if (Level.Name == "forest")
+                if (Level.Name == "forest" || Level.Name == "backforest")
                     spriteBatch.Draw(Art.Pixel, new Rectangle(i * w + wOffset, 0, w, (int)lineOffset), celling);//celling
                 else
                 {

@@ -4,27 +4,27 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Black Hole.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Bullet.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Glow.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Laser.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Player.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Pointer.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Seeker.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Wanderer.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Story.spritefont</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Basement.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Door.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Exit.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fai.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fence.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fuck.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Gate.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Leaves.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Paper.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Sapo.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Wall.png</File>
-    <File>c:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Window.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Black Hole.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Bullet.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Glow.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Laser.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Player.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Pointer.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Seeker.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Art/Wanderer.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Story.spritefont</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Basement.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Door.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Exit.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fai.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fence.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Fuck.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Gate.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Leaves.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Paper.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Sapo.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Wall.png</File>
+    <File>C:/Users/b_bri/Documents/fei/gamedev/kMissCluster/Content/Tiles/Window.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

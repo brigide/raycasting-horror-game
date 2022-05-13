@@ -15,6 +15,7 @@ namespace kMissCluster
         public static Line currentDraw;
         public static Line currentPaper;
         public static Line currentLocked;
+        public static Line currentEnding2;
         public static Queue<Line> StoryLines;
         public static Queue<Line> PlayingStory;
         public static Queue<Line> BuildingStory;
@@ -45,6 +46,7 @@ namespace kMissCluster
             currentDraw = StoryLines.Peek();
             currentPaper = Papers.Peek();
             currentLocked = new Line { StoryLine = "", FirstAppear = 0.0f };
+            currentEnding2 = Ending2.Peek();
         }
 
         private static void LoadStoryLines()
@@ -209,5 +211,29 @@ namespace kMissCluster
 
             }
         }
+
+        public static void DrawEnding2Lines(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentEnding2.FirstAppear == 0.0f)
+            {
+                currentEnding2.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, currentEnding2.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentEnding2.FirstAppear + 4.5f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                Ending2.Dequeue();
+                if (Ending2.Count > 0)
+                {
+                    currentEnding2 = Ending2.Peek();
+                }
+            }
+        }
+        public static void DrawEnd(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(Art.Pixel, Vector2.Zero, new Rectangle(0, 0, (int)Game1.ScreenSize.X, (int)Game1.ScreenSize.Y), Color.Black);
+            spriteBatch.DrawString(Art.Font, "The end.", new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+        }
+
     }
 }
