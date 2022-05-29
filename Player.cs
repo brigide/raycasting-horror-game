@@ -19,6 +19,7 @@ namespace kMissCluster
         public bool ReachedBuilding1End { get; set; }
         public bool ReachedBuilding2End { get; set; }
         public bool ReachedBackForestEnd { get; set; }
+        public bool ReachedFinalEnd { get; set; }
         public bool PickedTrueEnd { get; set; }
         public bool PickedAltEnd { get; set; }
         public static Player Instance

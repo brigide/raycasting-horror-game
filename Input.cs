@@ -161,6 +161,11 @@ namespace kMissCluster
                 {
                     player.ReachedBackForestEnd = true;
                 }
+                if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Collision == TileCollision.Exit
+                    && Level.Name == "deadend")
+                {
+                    player.ReachedFinalEnd = true;
+                }
 
                 if (level.GetTiles[(int)gridAddOffset.X, (int)gridAddOffset.Y].Texture == Art.Paper
                     && Level.Name == "building1")

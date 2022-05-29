@@ -16,6 +16,7 @@ namespace kMissCluster
         public static Line currentPaper;
         public static Line currentLocked;
         public static Line currentEnding2;
+        public static Line currentEnding1;
         public static Queue<Line> StoryLines;
         public static Queue<Line> PlayingStory;
         public static Queue<Line> BuildingStory;
@@ -47,6 +48,7 @@ namespace kMissCluster
             currentPaper = Papers.Peek();
             currentLocked = new Line { StoryLine = "", FirstAppear = 0.0f };
             currentEnding2 = Ending2.Peek();
+            currentEnding1 = Ending1.Peek();
         }
 
         private static void LoadStoryLines()
@@ -93,7 +95,9 @@ namespace kMissCluster
 
         private static void LoadEnding1()
         {
-            Ending1.Enqueue(new Line { StoryLine = "Eles estão aqui.", FirstAppear = 0.0f });
+            Ending1.Enqueue(new Line { StoryLine = "Eles estao aqui.", FirstAppear = 0.0f });
+            Ending1.Enqueue(new Line { StoryLine = "Assim como eu. Esse e o meu fim.", FirstAppear = 0.0f });
+            Ending1.Enqueue(new Line { StoryLine = "O mundo jamais sabera da verdade.", FirstAppear = 0.0f });
         }
 
         private static void LoadEnding2()
@@ -209,6 +213,24 @@ namespace kMissCluster
                     currentDraw = ChoiceLines.Peek();
                 }
 
+            }
+        }
+
+        public static void DrawEnding1Lines(SpriteBatch spriteBatch, GameTime gameTime)
+        {
+            if (currentEnding1.FirstAppear == 0.0f)
+            {
+                currentEnding1.FirstAppear = (float)gameTime.TotalGameTime.TotalSeconds;
+            }
+            spriteBatch.DrawString(Art.Font, currentEnding1.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
+
+            if (currentEnding1.FirstAppear + 4.5f <= gameTime.TotalGameTime.TotalSeconds)
+            {
+                Ending1.Dequeue();
+                if (Ending1.Count > 0)
+                {
+                    currentEnding1 = Ending1.Peek();
+                }
             }
         }
 

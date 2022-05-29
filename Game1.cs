@@ -133,6 +133,10 @@ namespace kMissCluster
             {
                 state = GameState.Ending2;
             }
+            if (Player.Instance.ReachedFinalEnd && Level.Name == "deadend")
+            {
+                state = GameState.Ending1;
+            }
 
             base.Update(gameTime);
         }
@@ -165,6 +169,8 @@ namespace kMissCluster
                     Story.DrawChoiceLine(_spriteBatch, gameTime);
                 else if (Story.Ending2.Count > 0 && Level.Name == "backforest")
                     Story.DrawEnding2Lines(_spriteBatch, gameTime);
+                else if (Story.Ending1.Count > 0 && Level.Name == "deadend")
+                    Story.DrawEnding1Lines(_spriteBatch, gameTime);
             }
             if (state == GameState.InitStory)
             {
@@ -178,6 +184,10 @@ namespace kMissCluster
                 }
             }
             if (state == GameState.Ending2)
+            {
+                Story.DrawEnd(_spriteBatch);
+            }
+            if (state == GameState.Ending1)
             {
                 Story.DrawEnd(_spriteBatch);
             }
