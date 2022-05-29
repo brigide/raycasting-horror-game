@@ -116,7 +116,7 @@ namespace kMissCluster
             }
             spriteBatch.DrawString(Art.Font, currentDraw.StoryLine, new Vector2(100, Game1.ScreenSize.Y / 2.0f), Color.White);
 
-            if (currentDraw.FirstAppear + 0.1f <= gameTime.TotalGameTime.TotalSeconds)
+            if (currentDraw.FirstAppear + 5.0f <= gameTime.TotalGameTime.TotalSeconds)
             {
                 StoryLines.Dequeue();
                 if (StoryLines.Count > 0) currentDraw = StoryLines.Peek();
